@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-app
+  labels:
+    app: frontend-app
+spec:
+  selector:
+    matchLabels:
+      app: frontend-app
+  template:
+    metadata:
+      labels:
+        app: frontend-app
+    spec:
+      containers:
+      - name: frontend-app
+        image: andiukku/frontend:latest
+        env: 
+        - name: "REACT_APP_BACKEND_BASE_URL" 
+          value: "http://stagingbackend.andisyukur.xyz" 
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-app    
+  labels:
+    app: backend-app
+spec:
+  selector:
+    matchLabels:
+      app: backend-app
+  template:
+    metadata:
+      labels:
+        app: backend-app
+    spec:
+      containers:
+      - name: backend-app
+        image: andiukku/backend:latest
+        env:
+        - name: "REACT_APP_DATABASE_HOST"
+          value: "database-staging.ct7v66n4obdr.us-east-2.rds.amazonaws.com"
+        
