@@ -20,7 +20,7 @@ pipeline {
               //
                 script { echo "Build"
 
-                if (env.BRANCH_NAME == "stage")
+                if (env.BRANCH_NAME == "staging")
                 
                 { 
                 // sh "pwd && ls -lah"
@@ -55,20 +55,20 @@ pipeline {
               //
                 script { echo "Testing Deploy Lagi" 
 
-                if (env.BRANCH_NAME == "stage")
+                if (env.BRANCH_NAME == "staging")
                 
                 { 
 
-                sh "kubectl -n stage set image deployment/web-api cilist-backend=andiukku/backend:stage-\$(git rev-parse --short HEAD)"
-                sh "kubectl -n stage set image deployment/web-front cilist-frontend=andiukku/frontend:stage-\$(git rev-parse --short HEAD)"
+                sh "kubectl -n stage set image deployment/backend-app backend-app=andiukku/backend:stage-\$(git rev-parse --short HEAD)"
+                sh "kubectl -n stage set image deployment/frontend-app frontend-app=andiukku/frontend:stage-\$(git rev-parse --short HEAD)"
                 sh "docker image rmi andiukku/backend:stage-\$(git rev-parse --short HEAD)"
                 sh "docker image rmi andiukku/backend:stage-latest"
                 sh "docker image rmi andiukku/frontend:stage-\$(git rev-parse --short HEAD)"
                 sh "docker image rmi andiukku/frontend:stage-latest"
                 }else{ 
 
-                sh "kubectl -n production set image deployment/web-api cilist-backend=andiukku/backend:prod-\$(git rev-parse --short HEAD)"
-                sh "kubectl -n production set image deployment/web-front cilist-frontend=andiukku/frontend:prod-\$(git rev-parse --short HEAD)"
+                sh "kubectl -n production set image deployment/backend-app backend-app=andiukku/backend:prod-\$(git rev-parse --short HEAD)"
+                sh "kubectl -n production set image deployment/frontend-app frontend-app=andiukku/frontend:prod-\$(git rev-parse --short HEAD)"
                 sh "docker image rmi andiukku/backend:prod-\$(git rev-parse --short HEAD)"
                 sh "docker image rmi andiukku/backend:prod-latest"
                 sh "docker image rmi andiukku/frontend:prod-\$(git rev-parse --short HEAD)"
