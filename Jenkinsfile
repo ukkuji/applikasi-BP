@@ -59,8 +59,8 @@ pipeline {
                 
                 { 
 
-                sh "kubectl -n stage set image deployment/backend-app backend-app=andiukku/backend:stage-\$(git rev-parse --short HEAD)"
-                sh "kubectl -n stage set image deployment/frontend-app frontend-app=andiukku/frontend:stage-\$(git rev-parse --short HEAD)"
+                sh "kubectl -n staging set image deployment/backend-app backend-app=andiukku/backend:stage-\$(git rev-parse --short HEAD)"
+                sh "kubectl -n staging set image deployment/frontend-app frontend-app=andiukku/frontend:stage-\$(git rev-parse --short HEAD)"
                 sh "docker image rmi andiukku/backend:stage-\$(git rev-parse --short HEAD)"
                 sh "docker image rmi andiukku/backend:stage-latest"
                 sh "docker image rmi andiukku/frontend:stage-\$(git rev-parse --short HEAD)"
