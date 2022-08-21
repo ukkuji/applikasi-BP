@@ -7,10 +7,10 @@ pipeline {
             steps {
               //
                 script { echo "Test" 
-                // def scannerHome = tool 'sonarscanner1' ;
-	              // withSonarQubeEnv('sonarserver1') {
-	              // sh "${scannerHome}/bin/sonar-scanner"
-	              //   }
+                def scannerHome = tool 'sonarqube' ;
+	              withSonarQubeEnv('scanner') {
+	              sh "${scannerHome}/bin/sonar-scanner"
+	                }
                 }
               }
             }
