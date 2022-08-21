@@ -6,12 +6,12 @@ pipeline {
           agent { label "agent1" }
             steps {
               //
-                // script { echo "Test" 
+                script { echo "Test" 
                 // def scannerHome = tool 'sonarscanner1' ;
 	              // withSonarQubeEnv('sonarserver1') {
 	              // sh "${scannerHome}/bin/sonar-scanner"
 	              //   }
-                // }
+                }
               }
             }
         stage('Build') {
